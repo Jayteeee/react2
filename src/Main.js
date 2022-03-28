@@ -1,10 +1,12 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { useSelector } from "react-redux"
+import { useSelector,useDispatch } from "react-redux"
 import styled, { keyframes } from "styled-components";
+import { TiTickOutline, TiEdit, TiTimes } from "react-icons/ti";
 
 const Main = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const word_list = useSelector((state) => state.word.list);
 
   return (
@@ -17,7 +19,21 @@ const Main = () => {
           <Card
           onClick={() => {history.push("/card")}}
           key={idx}>
-            <h3>{list.word}</h3>
+            <h3>
+              <div>
+              {list.word}
+              </div>
+              <Buttons>
+              < TiTickOutline 
+              onClick={() => {
+              }}
+              />
+              < TiEdit 
+              />
+              < TiTimes 
+              />
+              </Buttons>
+            </h3>
             <hr />
             <div>
               <p>정의</p>
@@ -76,10 +92,23 @@ const Card = styled.div`
   margin: 10px;
   padding: 10px;
   text-align: left;
+  background: {list.completed} = false ? white : blue;
+
+  & > h3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
 
+const Buttons = styled.div`
+  color: #4169e1;
+  cursor: pointer;
+  font-size: 25px;
+`
+
 const Example = styled.div`
-  color: blue;
+  color: #4169e1;
 `
 
 const joinAnimation = keyframes`
@@ -106,7 +135,7 @@ const Join = styled.button`
   border: 1px solid gray;
 
   &:hover {
-    animation: ${joinAnimation} 0.3s linear alternate;
+    animation: ${joinAnimation} 0.2s linear alternate;
   }
 `;
 

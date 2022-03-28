@@ -2,6 +2,7 @@
 
 // Actions
 const CREATE = 'card/CREATE';
+// const UPDATE = 'card/UPDATE';
 
 const initialState = {
     list: [
