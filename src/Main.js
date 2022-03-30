@@ -19,7 +19,7 @@ const Main = () => {
           <Card 
           completed={list.completed}
           key={idx}>
-            <h3>
+            <Name>
               <div>
               {list.word}
               </div>
@@ -43,7 +43,7 @@ const Main = () => {
               }}
               />
               </Buttons>
-            </h3>
+            </Name>
             <hr />
             <div>
               <p>정의</p>
@@ -102,6 +102,8 @@ const Card = styled.div`
   margin: 10px;
   padding: 10px;
   text-align: left;
+  overflow-wrap: break-word;
+  overflow-y: auto;
   background-color: ${(props) => (props.completed? "#4169e1" : "white")};
   color: ${(props) => (props.completed? "white" : "black")};
 
@@ -117,6 +119,14 @@ const Card = styled.div`
     transition: 200ms ease-in-out;
   }
 `;
+
+const Name = styled.h3`
+  & > div {
+    inline-size: 75px;
+    overflow-wrap: break-word;
+  }
+  
+`
 
 const Buttons = styled.div`
   color: ${(props) => (props.completed? "white" : "#4169e1")};
