@@ -108,6 +108,11 @@ const Card = styled.div`
   text-align: left;
   overflow-wrap: break-word;
   overflow-y: auto;
+  -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera*/
+  }
   background-color: ${(props) => (props.completed? "#4169e1" : "white")};
   color: ${(props) => (props.completed? "white" : "black")};
 
