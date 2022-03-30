@@ -74,6 +74,9 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   margin: auto;
+  & > h1 {
+    color: white;
+  }
 `;
 
 const Box = styled.form`
@@ -84,6 +87,7 @@ const Box = styled.form`
   display:flex;
   flex-direction:column;
   border-radius:5px;
+  background-color: white ;
 
   & button {
     padding:15px 0px; 

@@ -16,21 +16,22 @@ function App() {
   }, []);
 
   return (
-    <Container>
-      <Title onClick={() => {history.push("/")}}>
-        <div>나만의 사전</div>
-        <MyLine />
-      </Title>
-      <Route exact path="/" >
-        <Main />
-      </Route>
-      <Route path="/card" >
-        <Card />
-      </Route>
-      <Route path='/edit/:card_idx/:card_id' exact >
-        <Edit />
-      </Route>
-    </Container>
+      <Container>
+        <Title onClick={() => {history.push("/")}}>
+          <div>나만의 사전</div>
+          <MyLine />
+        </Title>
+        <Route exact path="/" >
+          <Main />
+        </Route>
+        <Route path="/card" >
+          <Card />
+        </Route>
+        <Route path='/edit/:card_idx/:card_id' exact >
+          <Edit />
+        </Route>
+      </Container>
+    
   );
 }
 

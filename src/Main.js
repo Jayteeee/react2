@@ -112,8 +112,8 @@ const Card = styled.div`
   }
 
   &:hover {
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 10px 11px 0px,
+    rgba(60, 64, 67, 0.15) 0px 5px 10px 4px;
     transition: 200ms ease-in-out;
   }
 `;
