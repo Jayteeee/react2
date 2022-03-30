@@ -125,6 +125,7 @@ const Buttons = styled.div`
 `
 
 const Example = styled.div`
+  overflow-wrap: break-word;
   color: ${(props) => (props.completed? "white" : "#4169e1")};
 `
 
