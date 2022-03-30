@@ -126,10 +126,10 @@ export const deleteCardFB = (card_id) => {
 export default function reducer(state = initialState, action) {
     switch (action.type) {
       case "card/LOAD": {
-        // const list_sorted = action.card_list.sort((a,b) => {
-        //   a.time.localeCompare(b.time);
-        // });
-        return {list: action.card_list}
+        const list_sorted = action.card_list.sort((a,b) => {
+          return a.time - b.time;
+        });
+        return {list: list_sorted}
       }
       case "card/CREATE": {
         const new_card_list = [...state.list, action.card];
