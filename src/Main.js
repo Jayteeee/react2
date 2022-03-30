@@ -3,34 +3,44 @@ import { useHistory } from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux"
 import styled, { keyframes } from "styled-components";
 import { TiTickOutline, TiEdit, TiTimes } from "react-icons/ti";
+import { FiChevronsUp } from "react-icons/fi";
+import { updateCardFB, deleteCardFB } from "./redux/modules/word";
 
 const Main = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const word_list = useSelector((state) => state.word.list);
-
   return (
 
     <Container className="Main">
-      <h1>재밌는 사전</h1>
       <Card_wrap>
       {word_list.map((list,idx) => {
         return(
-          <Card
-          onClick={() => {history.push("/card")}}
+          <Card 
+          completed={list.completed}
           key={idx}>
             <h3>
               <div>
               {list.word}
               </div>
-              <Buttons>
+              <Buttons completed={list.completed}>
               < TiTickOutline 
-              onClick={() => {
+                onClick={() => {
+                 dispatch(updateCardFB(list))
               }}
               />
-              < TiEdit 
+              < TiEdit
+                onClick={() => {
+                  let insert_pw = window.prompt("비밀번호를 입력해주세요.","")
+                  insert_pw == list.password? history.push(`/edit/${idx}/${list.id}`) : alert("비밀번호가 다릅니다.")
+                }}
               />
               < TiTimes 
+                onClick={() => {
+                  let insert_pw = window.prompt("비밀번호를 입력해주세요.","")
+                  insert_pw == list.password? dispatch(deleteCardFB(list.id)) : alert("비밀번호가 다릅니다.")
+                  // window.location.reload();
+              }}
               />
               </Buttons>
             </h3>
@@ -40,7 +50,7 @@ const Main = () => {
               <p>{list.definition}</p>
             </div>
             <br></br>
-            <Example>
+            <Example completed={list.completed}>
               <p>예시</p>
               <p>{list.example}</p>
             </Example>
@@ -60,7 +70,7 @@ const Main = () => {
           window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
         }}
       >
-        ↑
+        <FiChevronsUp/>
       </Totop>
     </Container>
   );
@@ -92,23 +102,30 @@ const Card = styled.div`
   margin: 10px;
   padding: 10px;
   text-align: left;
-  background: {list.completed} = false ? white : blue;
+  background-color: ${(props) => (props.completed? "#4169e1" : "white")};
+  color: ${(props) => (props.completed? "white" : "black")};
 
   & > h3 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
+
+  &:hover {
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    transition: 200ms ease-in-out;
+  }
 `;
 
 const Buttons = styled.div`
-  color: #4169e1;
+  color: ${(props) => (props.completed? "white" : "#4169e1")};
   cursor: pointer;
   font-size: 25px;
 `
 
 const Example = styled.div`
-  color: #4169e1;
+  color: ${(props) => (props.completed? "white" : "#4169e1")};
 `
 
 const joinAnimation = keyframes`
@@ -130,11 +147,15 @@ const Join = styled.button`
   border-radius: 60px;
   font-size: 50px;
   cursor: pointer;
-  background: #4169e1;
-  color: white;
+  background: white;
+  color: #4169e1;
   border: 1px solid gray;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 
   &:hover {
+    background: #4169e1;
+    color: white;
     animation: ${joinAnimation} 0.2s linear alternate;
   }
 `;
@@ -145,14 +166,21 @@ const Totop = styled.button`
   right: 30px;
   width: 60px;
   height: 60px;
-  justify-content: center;
-  align-items: center;
+  padding-top: 10px;
   border-radius: 60px;
   font-size: 30px;
   cursor: pointer;
-  background: #4169e1;
-  color: white;
+  background: white;
+  color: #4169e1;
   border: 1px solid gray;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+  &:hover {
+    background: #4169e1;
+    color: white;
+    transition: 0.2s linear alternate
+  }
 `;
 
 export default Main;
