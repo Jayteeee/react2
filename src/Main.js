@@ -91,6 +91,10 @@ const Card_wrap = styled.div`
   flex-wrap: wrap;
   max-width: 80vw;
   width: 80vw;
+  
+  @media screen and (min-width: 0px) and (max-width: 800px) {
+    justify-content: center;
+  }
 `;
 
 const Card = styled.div`
@@ -106,6 +110,10 @@ const Card = styled.div`
   overflow-y: auto;
   background-color: ${(props) => (props.completed? "#4169e1" : "white")};
   color: ${(props) => (props.completed? "white" : "black")};
+
+  @media screen and (min-width: 0px) and (max-width: 800px) {
+    width: 80vw;
+  }
 
   & > h3 {
     display: flex;
